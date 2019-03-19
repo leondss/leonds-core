@@ -60,4 +60,11 @@ public class QueryPageImpl<T> implements Page<T>, Serializable {
         return (int) (total / (long) getSize()) + (total % (long) getSize() > 0L ? 1 : 0);
     }
 
+    public int getPrePage() {
+        return page - 1 < 0 ? 0 : page - 1;
+    }
+
+    public int getNextPage() {
+        return page + 1 > getTotalPages() ? getTotalPages() : page + 1;
+    }
 }

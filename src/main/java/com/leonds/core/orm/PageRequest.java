@@ -22,7 +22,7 @@ public class PageRequest {
 
     private PageRequest(int page, int size, String orderBy) {
         this.page = page;
-        this.size = size;
+        this.size = size == 0 ? 15 : size;
         this.orderBy = orderBy;
     }
 

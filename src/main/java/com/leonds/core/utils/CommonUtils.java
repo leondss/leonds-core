@@ -12,7 +12,10 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author Leon
@@ -84,5 +87,25 @@ public class CommonUtils {
                 }
             }
         }
+    }
+
+    /**
+     * 元转分
+     */
+    public static int y2f(double input) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        double price = Double.valueOf(df.format(input));
+        return (int) (price * 100);
+    }
+
+    /**
+     * 分转元
+     */
+    public static String f2y(int price) {
+        return BigDecimal.valueOf(price).divide(new BigDecimal(100)).toString();
+    }
+
+    public static String uuid() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }

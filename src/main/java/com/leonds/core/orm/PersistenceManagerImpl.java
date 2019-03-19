@@ -4,7 +4,6 @@ import com.leonds.core.orm.mapper.BaseMapper;
 import com.leonds.core.utils.CommonUtils;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.DirectFieldAccessor;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -16,8 +15,11 @@ public class PersistenceManagerImpl extends SqlSessionDaoSupport implements Pers
 
     @Resource
     private BaseMapper baseMapper;
-    @Resource
     private OperatorService operatorService;
+
+    public void setOperatorService(OperatorService operatorService) {
+        this.operatorService = operatorService;
+    }
 
     @Override
     public <T extends BaseEntity> T get(Class<T> entityClass, String id) {
@@ -140,7 +142,7 @@ public class PersistenceManagerImpl extends SqlSessionDaoSupport implements Pers
             sqlParams.unCount();
             rows = find(statement, sqlParams);
         }
-        return new QueryPageImpl<>(sqlParams.getPageNo(), sqlParams.getPageSize(), total, rows);
+        return new QueryPageImpl<>(sqlParams.getPageRequest().getPage(), sqlParams.getPageRequest().getSize(), total, rows);
     }
 
     @Override

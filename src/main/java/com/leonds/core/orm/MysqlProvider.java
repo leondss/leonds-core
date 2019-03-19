@@ -48,11 +48,11 @@ public class MysqlProvider {
         final StringBuilder columns = new StringBuilder();
         final StringBuilder values = new StringBuilder();
         for (Attribute attribute : attributes) {
-            columns.append(",").append(attribute.getField());
+            columns.append(",`").append(attribute.getField()).append("`");
             values.append(",").append("#{").append(attribute.getName()).append("}");
         }
         return new SQL() {{
-            INSERT_INTO(tableName);
+            INSERT_INTO("`" + tableName + "`");
             VALUES(columns.substring(1), values.substring(1));
         }}.toString();
     }

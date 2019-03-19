@@ -43,12 +43,8 @@ public class SqlParams {
         return this;
     }
 
-    public int getPageNo() {
-        return params.get("pageNo") != null ? Integer.valueOf(params.get("pageNo").toString()) : 0;
-    }
-
-    public int getPageSize() {
-        return params.get("pageSize") != null ? Integer.valueOf(params.get("pageSize").toString()) : 15;
+    public PageRequest getPageRequest() {
+        return (PageRequest) params.get("page");
     }
 
     public Map<String, Object> params() {

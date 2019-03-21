@@ -167,6 +167,11 @@ public class PersistenceManagerImpl extends SqlSessionDaoSupport implements Pers
         return new QueryPageImpl<>(page.getPage(), page.getSize(), page.getTotal(), rows);
     }
 
+    @Override
+    public <T extends BaseEntity> int count(Class<T> entityClass, Condition condition) {
+        return baseMapper.count(entityClass, condition);
+    }
+
     private <T extends BaseEntity> T convert(Map<String, Object> source, Class<T> entityClass) {
         if (source == null) {
             return null;

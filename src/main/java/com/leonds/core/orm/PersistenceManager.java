@@ -46,4 +46,6 @@ public interface PersistenceManager {
     <T extends BaseEntity> Page<T> findPage(Class<T> entityClass, PageRequest pageRequest, Condition condition);
 
     <T> Page<T> findPage(String statement, SqlParams sqlParams, Class<T> clazz);
+
+    <T extends BaseEntity> int count(Class<T> entityClass, Condition condition);
 }

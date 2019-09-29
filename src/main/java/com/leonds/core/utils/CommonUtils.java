@@ -110,7 +110,7 @@ public class CommonUtils {
      */
     public static int y2f(double input) {
         DecimalFormat df = new DecimalFormat("#.00");
-        double price = Double.valueOf(df.format(input));
+        double price = Double.parseDouble(df.format(input));
         return (int) (price * 100);
     }
 

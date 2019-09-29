@@ -58,8 +58,10 @@ public class PersistenceManagerImpl extends SqlSessionDaoSupport implements Pers
         String id = UUID.randomUUID().toString();
         entity.setId(id);
         entity.setCreationTime(new Date());
-        entity.setOperator(operatorService.getOperatorId());
-        entity.setOperatorId(operatorService.getOperatorName());
+        if (operatorService != null) {
+            entity.setOperator(operatorService.getOperatorName());
+            entity.setOperatorId(operatorService.getOperatorId());
+        }
         if (baseMapper.insert(entity) > 0) {
             return get((Class<T>) entity.getClass(), id);
         }

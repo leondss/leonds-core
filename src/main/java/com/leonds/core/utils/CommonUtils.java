@@ -54,6 +54,7 @@ public class CommonUtils {
 
     @SuppressWarnings("rawtypes")
     public static <T> T mapToBean(Class<T> type, Map map) {
+        if (map == null) return null;
         try {
             T obj = type.newInstance();
             BeanInfo beanInfo = Introspector.getBeanInfo(type);
